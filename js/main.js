@@ -1,312 +1,282 @@
 /**
- * Импульс — Аккредитованная IT-компания
- * Основной JavaScript файл
+ * Основной JavaScript файл для лендинга ООО «Магистрат»
+ * Обрабатывает загрузку данных, формы и интерактивность
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация всех модулей
-    initMobileMenu();
-    initSmoothScroll();
-    initFormValidation();
-    initRequisitesEditor();
-});
+(function() {
+    'use strict';
 
-/**
- * Мобильное меню (бургер)
- */
-function initMobileMenu() {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav');
-    
-    if (!burger || !nav) return;
-    
-    burger.addEventListener('click', function() {
-        nav.classList.toggle('active');
-        
-        // Анимация бургера
-        const spans = burger.querySelectorAll('span');
-        if (nav.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
+    // ==========================================
+    // Инициализация при загрузке страницы
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', function() {
+        initPrices();
+        initContacts();
+        initNavigation();
+        initForm();
+        initFooter();
+    });
+
+    // ==========================================
+    // Инициализация прайс-листа
+    // ==========================================
+    function initPrices() {
+        const tbody = document.getElementById('prices-body');
+        if (!tbody || !CONFIG) return;
+
+        const pricesData = CONFIG.prices;
+        let html = '';
+
+        for (const key in pricesData) {
+            const item = pricesData[key];
+            const priceDisplay = item.price !== null 
+                ? formatPrice(item.price) + (item.unit ? ' / ' + item.unit : '')
+                : item.unit;
+
+            html += `
+                <tr>
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.description}</td>
+                    <td class="price-cell">${priceDisplay}</td>
+                </tr>
+            `;
         }
-    });
-    
-    // Закрытие меню при клике на ссылку
-    const navLinks = nav.querySelectorAll('.nav__link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+
+        tbody.innerHTML = html;
+    }
+
+    // ==========================================
+    // Инициализация контактов
+    // ==========================================
+    function initContacts() {
+        if (!CONFIG) return;
+
+        // Обновление контактов
+        const emailEl = document.getElementById('contact-email');
+        const phoneEl = document.getElementById('contact-phone');
+        const footerEmail = document.getElementById('footer-email');
+        const footerPhone = document.getElementById('footer-phone');
+
+        if (emailEl) {
+            emailEl.textContent = CONFIG.contacts.email;
+            emailEl.href = 'mailto:' + CONFIG.contacts.email;
+        }
+
+        if (phoneEl) {
+            phoneEl.textContent = CONFIG.contacts.phone;
+            phoneEl.href = 'tel:' + CONFIG.contacts.phoneRaw;
+        }
+
+        if (footerEmail) {
+            footerEmail.textContent = CONFIG.contacts.email;
+            footerEmail.href = 'mailto:' + CONFIG.contacts.email;
+        }
+
+        if (footerPhone) {
+            footerPhone.textContent = CONFIG.contacts.phone;
+            footerPhone.href = 'tel:' + CONFIG.contacts.phoneRaw;
+        }
+
+        // Обновление реквизитов
+        updateRequisitesDisplay();
+    }
+
+    // ==========================================
+    // Отображение реквизитов
+    // ==========================================
+    function updateRequisitesDisplay() {
+        if (!CONFIG) return;
+
+        const innEl = document.getElementById('req-inn');
+        const kppEl = document.getElementById('req-kpp');
+        const ogrnEl = document.getElementById('req-ogrn');
+        const addressEl = document.getElementById('req-address');
+
+        const footerInn = document.getElementById('footer-inn');
+        const footerKpp = document.getElementById('footer-kpp');
+        const footerOgrn = document.getElementById('footer-ogrn');
+
+        if (innEl) innEl.textContent = CONFIG.company.inn || 'Не указан';
+        if (kppEl) kppEl.textContent = CONFIG.company.kpp || 'Не указан';
+        if (ogrnEl) ogrnEl.textContent = CONFIG.company.ogrn || 'Не указан';
+        if (addressEl) addressEl.textContent = CONFIG.company.legalAddress || 'Не указан';
+
+        if (footerInn) footerInn.textContent = CONFIG.company.inn || 'Не указан';
+        if (footerKpp) footerKpp.textContent = CONFIG.company.kpp || 'Не указан';
+        if (footerOgrn) footerOgrn.textContent = CONFIG.company.ogrn || 'Не указан';
+    }
+
+    // ==========================================
+    // Инициализация футера
+    // ==========================================
+    function initFooter() {
+        const yearEl = document.getElementById('footer-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    }
+
+    // ==========================================
+    // Навигация (плавная прокрутка, бургер-меню)
+    // ==========================================
+    function initNavigation() {
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Закрыть мобильное меню после клика
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Бургер-меню
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav__list');
+        
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Закрытие меню при клике вне
+            document.addEventListener('click', function(e) {
+                if (!burger.contains(e.target) && !nav.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
+        }
+    }
+
+    function closeMobileMenu() {
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav__list');
+        
+        if (burger && nav) {
+            burger.classList.remove('active');
             nav.classList.remove('active');
-            const spans = burger.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        });
-    });
-}
+        }
+    }
 
-/**
- * Плавная прокрутка к якорям
- */
-function initSmoothScroll() {
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    
-    anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#') return;
-            
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+    // ==========================================
+    // Обработка формы
+    // ==========================================
+    function initForm() {
+        const form = document.getElementById('contact-form');
+        if (!form) return;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Сбор данных формы
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Валидация
+            if (!validateForm(data)) {
+                return;
             }
-        });
-    });
-}
 
-/**
- * Валидация и отправка форм
- */
-function initFormValidation() {
-    const form = document.getElementById('feedbackForm');
-    if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Сбор данных формы
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        
-        // Валидация
+            // Отправка (здесь должна быть логика отправки на сервер)
+            console.log('Данные формы:', data);
+            
+            // Уведомление об успешной отправке
+            alert('Спасибо! Ваша заявка принята. Мы свяжемся с вами в ближайшее время.');
+            
+            // Очистка формы
+            form.reset();
+        });
+
+        // Маска для телефона
+        const phoneInput = document.getElementById('form-phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value[0] === '7' || value[0] === '8') {
+                        value = value.substring(1);
+                    }
+                    let formatted = '+7';
+                    if (value.length > 0) formatted += ' (' + value.substring(0, 3);
+                    if (value.length > 3) formatted += ') ' + value.substring(3, 6);
+                    if (value.length > 6) formatted += '-' + value.substring(6, 8);
+                    if (value.length > 8) formatted += '-' + value.substring(8, 10);
+                    e.target.value = formatted;
+                } else {
+                    e.target.value = '';
+                }
+            });
+        }
+    }
+
+    function validateForm(data) {
         let isValid = true;
         const errors = [];
-        
+
         // Проверка имени
         if (!data.name || data.name.trim().length < 2) {
+            errors.push('Пожалуйста, введите корректное имя');
             isValid = false;
-            errors.push('Пожалуйста, введите корректное имя (минимум 2 символа)');
         }
-        
+
         // Проверка email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!data.email || !emailRegex.test(data.email)) {
+            errors.push('Пожалуйста, введите корректный email');
             isValid = false;
-            errors.push('Пожалуйста, введите корректный email адрес');
         }
-        
-        // Проверка телефона (если указан)
-        if (data.phone) {
-            const phoneRegex = /^[\d\s\+\-\(\)]+$/;
-            if (!phoneRegex.test(data.phone)) {
-                isValid = false;
-                errors.push('Пожалуйста, введите корректный номер телефона');
-            }
-        }
-        
+
         // Проверка сообщения
-        if (!data.message || data.message.trim().length < 10) {
+        if (!data.message || data.message.trim().length < 5) {
+            errors.push('Пожалуйста, введите сообщение (минимум 5 символов)');
             isValid = false;
-            errors.push('Пожалуйста, введите сообщение (минимум 10 символов)');
         }
-        
+
         // Проверка согласия
         if (!data.consent) {
-            isValid = false;
             errors.push('Необходимо согласие на обработку персональных данных');
+            isValid = false;
         }
-        
+
         if (!isValid) {
             alert(errors.join('\n'));
-            return;
         }
-        
-        // Имитация отправки формы
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Отправка...';
-        submitButton.disabled = true;
-        
-        setTimeout(function() {
-            alert('Спасибо! Ваша заявка успешно отправлена. Мы свяжемся с вами в течение одного рабочего дня.');
-            form.reset();
-            submitButton.textContent = originalText;
-            submitButton.disabled = false;
-        }, 1500);
-        
-        // В реальном проекте здесь будет AJAX запрос:
-        // fetch(form.action, { method: 'POST', body: formData })
-        //     .then(response => response.json())
-        //     .then(data => { ... })
-    });
-    
-    // Валидация в реальном времени
-    const inputs = form.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            validateField(this);
-        });
-    });
-}
 
-/**
- * Валидация отдельного поля
- */
-function validateField(field) {
-    const value = field.value.trim();
-    let isValid = true;
-    
-    if (field.type === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        isValid = emailRegex.test(value);
-    } else if (field.type === 'tel' && value) {
-        const phoneRegex = /^[\d\s\+\-\(\)]+$/;
-        isValid = phoneRegex.test(value);
-    } else if (field.hasAttribute('required')) {
-        isValid = value.length > 0;
+        return isValid;
     }
-    
-    // Визуальная индикация
-    if (isValid) {
-        field.style.borderColor = 'var(--color-success)';
-    } else if (value.length > 0) {
-        field.style.borderColor = 'var(--color-error)';
-    } else {
-        field.style.borderColor = 'var(--color-border)';
-    }
-}
 
-/**
- * Редактирование реквизитов (для администратора)
- * В реальном проекте это должно быть защищено паролем
- */
-function initRequisitesEditor() {
-    // Эта функция демонстрирует возможность редактирования реквизитов
-    // В продакшене должна быть реализована через CMS с авторизацией
-    
-    const requisitesData = {
-        companyName: 'Общество с ограниченной ответственностью «Импульс»',
-        shortName: 'ООО «Импульс»',
-        address: '101000, г. Москва, ул. Примерная, д. 10, офис 501',
-        inn: '7700000000',
-        kpp: '770101001',
-        ogrn: '1207700000000',
-        okved: [
-            '62.01 — Разработка компьютерного программного обеспечения',
-            '62.02 — Деятельность консультативная и работы в области компьютерных технологий',
-            '62.03 — Деятельность по управлению компьютерным оборудованием',
-            '62.09 — Деятельность, связанная с использованием вычислительной техники и информационных технологий, прочая',
-            '63.11 — Деятельность по обработке данных, предоставление услуг по размещению информации',
-            '58.29 — Издание прочих программных средств'
-        ],
-        email: 'info@impuls-it.ru',
-        phone: '+7 (495) 000-00-00'
-    };
-    
-    // Функция для обновления реквизитов (вызывается из CMS)
-    window.updateRequisites = function(newData) {
-        // Валидация ИНН (10 или 12 цифр)
-        if (newData.inn && !/^\d{10}$|^\d{12}$/.test(newData.inn)) {
-            console.error('Неверный формат ИНН. Должно быть 10 или 12 цифр.');
-            return false;
+    // ==========================================
+    // Экспорт функций для внешнего использования
+    // ==========================================
+    window.MagistratCMS = {
+        updateRequisites: updateRequisites,
+        updateContacts: updateContacts,
+        updatePrice: updatePrice,
+        getCompanyData: getCompanyData,
+        validateINN: validateINN,
+        validateOGRN: validateOGRN,
+        validateKPP: validateKPP,
+        validateOKVED: validateOKVED,
+        refreshDisplay: function() {
+            updateRequisitesDisplay();
+            initPrices();
+            initContacts();
         }
-        
-        // Валидация ОГРН (13 цифр)
-        if (newData.ogrn && !/^\d{13}$/.test(newData.ogrn)) {
-            console.error('Неверный формат ОГРН. Должно быть 13 цифр.');
-            return false;
-        }
-        
-        // Обновление данных
-        Object.assign(requisitesData, newData);
-        
-        // Здесь должна быть логика обновления DOM и сохранения в базу данных
-        console.log('Реквизиты обновлены:', requisitesData);
-        return true;
     };
-    
-    // Функция для получения текущих реквизитов
-    window.getRequisites = function() {
-        return { ...requisitesData };
-    };
-    
-    // Функция для проверки ОКВЭД на соответствие IT-перечню
-    window.validateOKVED = function(okvedCode) {
-        const itOkvedList = [
-            '62.01', '62.02', '62.03', '62.09',
-            '63.11', '58.29', '62.00', '63.1'
-        ];
-        
-        const code = okvedCode.split(' ')[0];
-        return itOkvedList.some(itCode => code.startsWith(itCode));
-    };
-}
 
-/**
- * Утилита для форматирования цены
- */
-function formatPrice(price) {
-    return new Intl.NumberFormat('ru-RU').format(price);
-}
-
-/**
- * Утилита для форматирования телефона
- */
-function formatPhone(phone) {
-    // Простая маска для российского номера
-    const cleaned = phone.replace(/\D/g, '');
-    const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})$/);
-    
-    if (match) {
-        return `+7 (${match[2]}) ${match[3]}-${match[4]}-${match[5]}`;
-    }
-    
-    return phone;
-}
-
-/**
- * Проверка доступности сайта (мониторинг)
- */
-window.checkSiteAvailability = function() {
-    const startTime = performance.now();
-    
-    fetch(window.location.href, { method: 'HEAD' })
-        .then(response => {
-            const loadTime = performance.now() - startTime;
-            
-            if (response.ok && loadTime < 3000) {
-                console.log(`✓ Сайт доступен. Время загрузки: ${Math.round(loadTime)} мс`);
-            } else if (!response.ok) {
-                console.error('✗ Ошибка доступа к сайту:', response.status);
-            } else {
-                console.warn('⚠ Время загрузки превышает 3 секунды:', Math.round(loadTime), 'мс');
-            }
-        })
-        .catch(error => {
-            console.error('✗ Сайт недоступен:', error);
-        });
-};
-
-// Экспорт функций для использования в CMS
-window.ImpulseCMS = {
-    updateRequisites: window.updateRequisites,
-    getRequisites: window.getRequisites,
-    validateOKVED: window.validateOKVED,
-    formatPrice: formatPrice,
-    formatPhone: formatPhone,
-    checkSiteAvailability: window.checkSiteAvailability
-};
-
-console.log('Импульс IT-компания: сайт загружен успешно');
+})();
