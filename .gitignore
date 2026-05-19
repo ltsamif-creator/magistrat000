@@ -1,7 +1,58 @@
-(js/config.js has been added, but it's a source file, not an artifact, so no need to ignore it)
+```gitignore
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+*.class
+*.exe
+*.dll
+*.so
+*.a
+*.out
 
-(css/style.css, docs/INSTRUCTION.md, index.html, js/main.js are all source/config files being modified, not artifacts)
+# Dependencies
+node_modules/
+venv/
+.venv/
+.env
+.env.local
+.env.*
 
-(Since only source files are changing and no build artifacts, dependencies, or temp files are present, no .gitignore rules are needed)
+# Build directories
+dist/
+build/
+target/
+.gradle/
 
-(empty output)
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+htmlcov/
+.mypy_cache/
+.pytest_cache/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+```

@@ -1,615 +1,729 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ООО «Магистрат» — Аккредитованная IT-компания | 1С, инфраструктура и сопровождение</title>
-    <meta name="description" content="Аккредитованная IT-компания Магистрат. Сервис-деск по 1С, обслуживание серверов и рабочих мест, сети и почта, закупка оборудования, сопровождение ПО КТТ (корпоративной телефонии и связи).">
-    <meta name="keywords" content="IT-компания, 1С, сервис-деск, сопровождение 1С, инфраструктура, серверы, аккредитованная IT-компания, Магистрат">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="ООО «Магистрат» — Аккредитованная IT-компания">
-    <meta property="og:description" content="IT-сервис: 1С, инфраструктура и сопровождение для бизнеса">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ru_RU">
-    
-    <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json" id="company-schema">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Общество с ограниченной ответственностью «Магистрат»",
-        "alternateName": "ООО «Магистрат»",
-        "url": "https://magistrat.example",
-        "logo": "/images/logo.png",
-        "description": "Аккредитованная IT-компания. Ведём сервис-деск по 1С, обслуживаем серверы и рабочие места, сети и почту, закупаем оборудование и сопровождаем программное обеспечение КТТ.",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "",
-            "addressLocality": "",
-            "postalCode": "",
-            "addressCountry": "RU"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+7 (800) 123-45-67",
-            "email": "info@magistrat.example",
-            "contactType": "customer service",
-            "availableLanguage": "Russian"
-        },
-        "taxID": "",
-        "legalName": "Общество с ограниченной ответственностью «Магистрат»"
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ООО «Магистрат» — аккредитованная IT-компания. Сервис-деск 1С, обслуживание серверов, сетей, почты, закупка оборудования. Внедрение и сопровождение 1С:Предприятие.">
+  <meta name="keywords" content="1С, сервис-деск, IT-аутсорсинг, аккредитованная IT-компания, внедрение 1С, сопровождение 1С, администрирование серверов">
+  <meta name="author" content="ООО «Магистрат»">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ООО «Магистрат» — Аккредитованная IT-компания">
+  <meta property="og:description" content="Сервис-деск 1С, обслуживание инфраструктуры, внедрение и сопровождение программных продуктов 1С:Предприятие.">
+  <meta property="og:locale" content="ru_RU">
+  
+  <title>ООО «Магистрат» — Аккредитованная IT-компания | Сервис-деск 1С и инфраструктура</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Общество с ограниченной ответственностью «Магистрат»",
+    "alternateName": "ООО «Магистрат»",
+    "url": "",
+    "logo": "",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+7-800-123-45-67",
+      "contactType": "customer service",
+      "email": "info@magistrat.example",
+      "availableLanguage": "Russian"
+    },
+    "areaServed": "RU",
+    "knowsLanguage": "Russian"
+  }
+  </script>
+  
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f4f5f7;
+      --bg-card: #ffffff;
+      --bg-elevated: #eceef1;
+      --accent: #1e3a5f;
+      --accent-muted: #2d4a6f;
+      --accent-soft: #e8ecf2;
+      --text: #1c1c1c;
+      --text-muted: #5c6370;
+      --border: #d9dde3;
+      --radius: 6px;
+      --max: 960px;
     }
-    </script>
-    
-    <link rel="stylesheet" href="css/style.css">
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 16px;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent-muted);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+      letter-spacing: 0.01em;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.25rem 1.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: color 0.15s;
+    }
+
+    nav a:hover {
+      color: var(--accent-muted);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3.25rem 0 3.75rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-inner {
+      max-width: 40rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 3.5vw, 1.875rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+      margin-bottom: 1.125rem;
+    }
+
+    .hero .lead {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      text-align: left;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.75rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 0;
+    }
+
+    section:nth-child(even) {
+      background: var(--bg-alt);
+    }
+
+    .section-head {
+      margin-bottom: 1.75rem;
+      text-align: left;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      margin: 0;
+      max-width: 42rem;
+      font-size: 0.9375rem;
+    }
+
+    .prose-block {
+      max-width: 42rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9375rem;
+      color: var(--text);
+      text-align: left;
+    }
+
+    .prose-block p + p {
+      margin-top: 0.75rem;
+    }
+
+    /* Cards grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card h3 {
+      font-size: 0.9375rem;
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    /* Price table */
+    .price-note {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding: 0.9rem 1rem;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    thead {
+      background: var(--bg-elevated);
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      vertical-align: middle;
+    }
+
+    th:last-child,
+    td.price-cell {
+      text-align: right;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover td {
+      background: var(--bg-alt);
+    }
+
+    .col-service {
+      min-width: 200px;
+      width: 32%;
+    }
+
+    .col-desc {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+
+    .price-cell {
+      font-weight: 600;
+      white-space: nowrap;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .contact-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-block h3 {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .contact-block p,
+    .contact-block a {
+      font-size: 0.9375rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      background: var(--bg);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.15rem;
+      background: var(--accent);
+      color: #fff !important;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-radius: var(--radius);
+      text-decoration: none !important;
+      transition: background 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--accent-muted);
+      text-decoration: none;
+    }
+
+    .hero-cta {
+      margin-top: 1.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      th, td {
+        padding: 0.65rem 0.75rem;
+      }
+
+      .col-desc {
+        display: none;
+      }
+
+      th:last-child,
+      td.price-cell {
+        text-align: right;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container header__container">
-            <div class="header__logo">
-                <a href="/" class="logo">
-                    <span class="logo__text">ООО «Магистрат»</span>
-                    <span class="logo__tagline">Аккредитованная IT-компания</span>
-                </a>
-            </div>
-            <nav class="header__nav nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#about" class="nav__link">О компании</a></li>
-                    <li class="nav__item"><a href="#service-desk" class="nav__link">Сервис-деск 1С</a></li>
-                    <li class="nav__item"><a href="#infrastructure" class="nav__link">Инфраструктура</a></li>
-                    <li class="nav__item"><a href="#services-1c" class="nav__link">Услуги 1С</a></li>
-                    <li class="nav__item"><a href="#prices" class="nav__link">Прайс</a></li>
-                    <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li>
-                </ul>
-            </nav>
-            <button class="header__burger burger" aria-label="Меню">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        ООО «Магистрат»
+        <span>Аккредитованная IT-компания</span>
+      </div>
+      <nav aria-label="Основная навигация">
+        <ul>
+          <li><a href="#about">О компании</a></li>
+          <li><a href="#servicedesk">Сервис-деск 1С</a></li>
+          <li><a href="#infra">Инфраструктура</a></li>
+          <li><a href="#services">Услуги 1С</a></li>
+          <li><a href="#price">Прайс</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <h1>IT-сервис: 1С, инфраструктура и сопровождение для бизнеса</h1>
+          <p class="lead">
+            Аккредитованная IT-компания. Ведём сервис-деск по 1С, обслуживаем серверы и рабочие места, сети и почту, закупаем оборудование и сопровождаем программное обеспечение КТТ (корпоративной телефонии и связи). Внедряем и сопровождаем прикладные решения на платформе «1С:Предприятие».
+          </p>
+          <div class="hero-badges">
+            <span class="badge">Сервис-деск 1С</span>
+            <span class="badge">Серверы и сеть</span>
+            <span class="badge">Почта и рабочие места</span>
+            <span class="badge">ПО КТТ</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn" href="#price">Прайс на услуги 1С</a>
+          </div>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero__container">
-                <div class="hero__content">
-                    <h1 class="hero__title">IT-сервис: 1С, инфраструктура и сопровождение для бизнеса</h1>
-                    <p class="hero__subtitle">Аккредитованная IT-компания. Ведём сервис-деск по 1С, обслуживаем серверы и рабочие места, сети и почту, закупаем оборудование и сопровождаем программное обеспечение КТТ (корпоративной телефонии и связи). Внедряем и сопровождаем прикладные решения на платформе «1С:Предприятие».</p>
-                    <div class="hero__buttons">
-                        <a href="#prices" class="btn btn--primary">Прайс на услуги 1С</a>
-                        <a href="#contacts" class="btn btn--outline">Связаться с нами</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="services section">
-            <div class="container">
-                <h2 class="section__title">Наши услуги</h2>
-                <p class="section__subtitle">Комплексные IT-решения для вашего бизнеса</p>
-                
-                <div class="services__grid grid">
-                    <!-- Service 1 -->
-                    <article class="service-card card">
-                        <div class="card__icon">💻</div>
-                        <h3 class="card__title">Разработка программного обеспечения</h3>
-                        <p class="card__description">
-                            Создаём индивидуальное программное обеспечение под ваши бизнес-задачи. 
-                            От прототипа до готового продукта с полной документацией.
-                        </p>
-                        <div class="card__details">
-                            <div class="detail">
-                                <strong>Для кого:</strong> для бизнеса любого масштаба
-                            </div>
-                            <div class="detail">
-                                <strong>Технологии:</strong> Python, JavaScript, PostgreSQL, React, Node.js
-                            </div>
-                            <div class="detail">
-                                <strong>Стоимость:</strong> от 100 000 руб.
-                            </div>
-                            <div class="detail">
-                                <strong>Сроки:</strong> от 2 недель
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Service 2 -->
-                    <article class="service-card card">
-                        <div class="card__icon">📊</div>
-                        <h3 class="card__title">Внедрение CRM систем</h3>
-                        <p class="card__description">
-                            Настраиваем и внедряем CRM системы для автоматизации продаж и управления клиентами. 
-                            Интеграция с существующими системами учёта.
-                        </p>
-                        <div class="card__details">
-                            <div class="detail">
-                                <strong>Для кого:</strong> для отделов продаж и сервисных компаний
-                            </div>
-                            <div class="detail">
-                                <strong>Технологии:</strong> Bitrix24, amoCRM, собственная разработка
-                            </div>
-                            <div class="detail">
-                                <strong>Стоимость:</strong> от 50 000 руб.
-                            </div>
-                            <div class="detail">
-                                <strong>Сроки:</strong> от 1 недели
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Service 3 -->
-                    <article class="service-card card">
-                        <div class="card__icon">⚙️</div>
-                        <h3 class="card__title">Внедрение ERP систем</h3>
-                        <p class="card__description">
-                            Комплексная автоматизация предприятия: учёт ресурсов, планирование производства, 
-                            управление финансами и персоналом.
-                        </p>
-                        <div class="card__details">
-                            <div class="detail">
-                                <strong>Для кого:</strong> для производственных и торговых предприятий
-                            </div>
-                            <div class="detail">
-                                <strong>Технологии:</strong> 1С, Odoo, собственная разработка
-                            </div>
-                            <div class="detail">
-                                <strong>Стоимость:</strong> от 200 000 руб.
-                            </div>
-                            <div class="detail">
-                                <strong>Сроки:</strong> от 1 месяца
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Service 4 -->
-                    <article class="service-card card">
-                        <div class="card__icon">🔧</div>
-                        <h3 class="card__title">IT-консалтинг</h3>
-                        <p class="card__description">
-                            Экспертные консультации по выбору IT-решений, аудиту инфраструктуры, 
-                            оптимизации бизнес-процессов с помощью технологий.
-                        </p>
-                        <div class="card__details">
-                            <div class="detail">
-                                <strong>Для кого:</strong> для руководителей и IT-директоров
-                            </div>
-                            <div class="detail">
-                                <strong>Технологии:</strong> анализ и подбор оптимальных решений
-                            </div>
-                            <div class="detail">
-                                <strong>Стоимость:</strong> от 10 000 руб./час
-                            </div>
-                            <div class="detail">
-                                <strong>Сроки:</strong> по договорённости
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Service 5 -->
-                    <article class="service-card card">
-                        <div class="card__icon">☁️</div>
-                        <h3 class="card__title">Облачные решения</h3>
-                        <p class="card__description">
-                            Развёртывание и поддержка облачной инфраструктуры. 
-                            Миграция данных в облако, настройка резервного копирования.
-                        </p>
-                        <div class="card__details">
-                            <div class="detail">
-                                <strong>Для кого:</strong> для компаний с удалёнными командами
-                            </div>
-                            <div class="detail">
-                                <strong>Технологии:</strong> Yandex Cloud, SberCloud, VK Cloud
-                            </div>
-                            <div class="detail">
-                                <strong>Стоимость:</strong> от 30 000 руб.
-                            </div>
-                            <div class="detail">
-                                <strong>Сроки:</strong> от 3 дней
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Service 6 -->
-                    <article class="service-card card">
-                        <div class="card__icon">📱</div>
-                        <h3 class="card__title">Мобильная разработка</h3>
-                        <p class="card__description">
-                            Создание мобильных приложений для iOS и Android. 
-                            Нативная и кроссплатформенная разработка.
-                        </p>
-                        <div class="card__details">
-                            <div class="detail">
-                                <strong>Для кого:</strong> для сервисов и интернет-магазинов
-                            </div>
-                            <div class="detail">
-                                <strong>Технологии:</strong> Swift, Kotlin, Flutter, React Native
-                            </div>
-                            <div class="detail">
-                                <strong>Стоимость:</strong> от 150 000 руб.
-                            </div>
-                            <div class="detail">
-                                <strong>Сроки:</strong> от 1 месяца
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Products Section -->
-        <section id="products" class="products section section--gray">
-            <div class="container">
-                <h2 class="section__title">Наши продукты</h2>
-                <p class="section__subtitle">Готовые программные решения собственной разработки</p>
-                
-                <div class="products__grid grid">
-                    <!-- Product 1 -->
-                    <article class="product-card card">
-                        <div class="card__badge">Хит продаж</div>
-                        <h3 class="card__title">Импульс.CRM</h3>
-                        <p class="card__description">
-                            Облачная CRM система для малого и среднего бизнеса. 
-                            Управление продажами, задачами и клиентской базой в одном интерфейсе.
-                        </p>
-                        <ul class="product-features">
-                            <li>✓ Управление воронкой продаж</li>
-                            <li>✓ Интеграция с телефонией и почтой</li>
-                            <li>✓ Мобильное приложение</li>
-                            <li>✓ Аналитика и отчёты</li>
-                        </ul>
-                        <div class="product-price">
-                            <span class="price">от 1 500 руб./мес</span>
-                            <span class="price-note">за пользователя</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary btn--full">Заказать демо</a>
-                    </article>
-
-                    <!-- Product 2 -->
-                    <article class="product-card card">
-                        <h3 class="card__title">Импульс.Учёт</h3>
-                        <p class="card__description">
-                            Система учёта товаров и услуг для торговых компаний. 
-                            Складской учёт, инвентаризация, интеграция с маркетплейсами.
-                        </p>
-                        <ul class="product-features">
-                            <li>✓ Складской учёт</li>
-                            <li>✓ Интеграция с Wildberries, Ozon</li>
-                            <li>✓ Печать документов</li>
-                            <li>✓ API для интеграции</li>
-                        </ul>
-                        <div class="product-price">
-                            <span class="price">от 3 000 руб./мес</span>
-                            <span class="price-note">базовый тариф</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary btn--full">Заказать демо</a>
-                    </article>
-
-                    <!-- Product 3 -->
-                    <article class="product-card card">
-                        <h3 class="card__title">Импульс.Задачи</h3>
-                        <p class="card__description">
-                            Система управления проектами и задачами для команд. 
-                            Канбан-доски, диаграммы Ганта, тайм-трекинг.
-                        </p>
-                        <ul class="product-features">
-                            <li>✓ Канбан и Гант</li>
-                            <li>✓ Учёт рабочего времени</li>
-                            <li>✓ Командная работа</li>
-                            <li>✓ Интеграции с мессенджерами</li>
-                        </ul>
-                        <div class="product-price">
-                            <span class="price">от 900 руб./мес</span>
-                            <span class="price-note">за команду до 10 человек</span>
-                        </div>
-                        <a href="#contacts" class="btn btn--primary btn--full">Заказать демо</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Rights Section -->
-        <section class="rights section">
-            <div class="container">
-                <h2 class="section__title">Программное обеспечение и права использования</h2>
-                
-                <div class="rights__content">
-                    <div class="rights__block">
-                        <h3>Исключительные права</h3>
-                        <p>
-                            Компания ООО «Импульс» обладает исключительными правами на следующее программное обеспечение:
-                        </p>
-                        <ul class="rights-list">
-                            <li>Импульс.CRM — система управления взаимоотношениями с клиентами</li>
-                            <li>Импульс.Учёт — система складского учёта и торговли</li>
-                            <li>Импульс.Задачи — система управления проектами и задачами</li>
-                            <li>Импульс.Аналитика — система бизнес-аналитики и отчётности</li>
-                        </ul>
-                    </div>
-
-                    <div class="rights__block">
-                        <h3>Способы предоставления прав</h3>
-                        <p>Мы предоставляем права использования следующими способами:</p>
-                        <ul class="rights-list">
-                            <li><strong>Лицензионный договор</strong> — бессрочная или временная лицензия на использование ПО</li>
-                            <li><strong>Подписка (SaaS)</strong> — облачный доступ к программному обеспечению с ежемесячной оплатой</li>
-                            <li><strong>Индивидуальные условия</strong> — специальные условия для крупных предприятий и партнёров</li>
-                        </ul>
-                    </div>
-
-                    <div class="rights__block">
-                        <h3>Реестр российского программного обеспечения</h3>
-                        <p>
-                            Наше программное обеспечение включено в Единый реестр российских программ для электронных вычислительных машин и баз данных:
-                        </p>
-                        <ul class="rights-list">
-                            <li>Импульс.CRM — № 12345 от 15.01.2024</li>
-                            <li>Импульс.Учёт — № 12346 от 20.02.2024</li>
-                        </p>
-                        <p class="rights-note">
-                            Мы осуществляем деятельность в соответствии с законодательством Российской Федерации в области информационных технологий.
-                        </p>
-                    </div>
-
-                    <div class="rights__block">
-                        <h3>Как получить доступ</h3>
-                        <p>Для получения лицензии или доступа к программному обеспечению:</p>
-                        <ol class="rights-steps">
-                            <li>Оставьте заявку через форму обратной связи на этой странице</li>
-                            <li>Напишите нам на электронную почту <a href="mailto:info@impuls-it.ru">info@impuls-it.ru</a></li>
-                            <li>Позвоните по телефону <a href="tel:+74950000000">+7 (495) 000-00-00</a></li>
-                        </ol>
-                        <p>
-                            Наши специалисты свяжутся с вами в течение одного рабочего дня для обсуждения деталей и подготовки коммерческого предложения.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Prices Section -->
-        <section id="prices" class="prices section section--gray">
-            <div class="container">
-                <h2 class="section__title">Стоимость услуг</h2>
-                <p class="section__subtitle">Прозрачное ценообразование без скрытых платежей</p>
-                
-                <div class="prices__table-wrapper">
-                    <table class="prices__table">
-                        <thead>
-                            <tr>
-                                <th>Услуга</th>
-                                <th>Краткое описание</th>
-                                <th>Цена</th>
-                            </tr>
-                        </thead>
-                        <tbody id="prices-body">
-                            <!-- Цены загружаются из config.js -->
-                        </tbody>
-                    </table>
-                </div>
-                <p class="prices__disclaimer">
-                    <strong>Ориентировочные расценки.</strong> Итоговая стоимость фиксируется в договоре или дополнительном соглашении после уточнения объёма работ.
-                </p>
-                <p class="prices__note">
-                    <strong>Важно:</strong> цены указаны без НДС (при применимости — НДС начисляется отдельно). Стоимость часа специалиста может отличаться в зависимости от срочности, сложности задачи и формата сотрудничества.
-                </p>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about section">
-            <div class="container">
-                <h2 class="section__title">О компании</h2>
-                <p class="section__subtitle section__text-large">
-                    ООО «Магистрат» — аккредитованная IT-компания. Мы сочетаем проектную работу с 1С и ежедневную эксплуатацию IT: единая точка входа для заявок по 1С, обслуживание инфраструктуры, закупка техники и сопровождение специализированного ПО (в том числе КТТ).
-                </p>
-                        </p>
-                        <p>
-                            Наша миссия — помогать российскому бизнесу становиться эффективнее с помощью современных 
-                            информационных технологий. Мы создаём решения, которые реально работают и приносят пользу нашим клиентам.
-                        </p>
-                        <p>
-                            Компания имеет аккредитацию Министерства цифрового развития, связи и массовых коммуникаций 
-                            Российской Федерации, что подтверждает наш статус профессионального участника IT-отрасли.
-                        </p>
-                    </div>
-                    
-                    <div class="about__stats stats">
-                        <div class="stat">
-                            <span class="stat__value">5+</span>
-                            <span class="stat__label">лет на рынке</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat__value">100+</span>
-                            <span class="stat__label">реализованных проектов</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat__value">50+</span>
-                            <span class="stat__label">постоянных клиентов</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat__value">20+</span>
-                            <span class="stat__label">специалистов в команде</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Requisites Block -->
-                <div class="requisites">
-                    <h3>Реквизиты компании</h3>
-                    <div class="requisites__grid">
-                        <div class="requisite-item">
-                            <span class="requisite-item__label">Полное наименование:</span>
-                            <span class="requisite-item__value">Общество с ограниченной ответственностью «Импульс»</span>
-                        </div>
-                        <div class="requisite-item">
-                            <span class="requisite-item__label">Сокращённое наименование:</span>
-                            <span class="requisite-item__value">ООО «Импульс»</span>
-                        </div>
-                        <div class="requisite-item">
-                            <span class="requisite-item__label">Юридический адрес:</span>
-                            <span class="requisite-item__value">101000, г. Москва, ул. Примерная, д. 10, офис 501</span>
-                        </div>
-                        <div class="requisite-item">
-                            <span class="requisite-item__label">ИНН:</span>
-                            <span class="requisite-item__value">7700000000</span>
-                        </div>
-                        <div class="requisite-item">
-                            <span class="requisite-item__label">КПП:</span>
-                            <span class="requisite-item__value">770101001</span>
-                        </div>
-                        <div class="requisite-item">
-                            <span class="requisite-item__label">ОГРН:</span>
-                            <span class="requisite-item__value">1207700000000</span>
-                        </div>
-                        <div class="requisite-item requisite-item--full">
-                            <span class="requisite-item__label">ОКВЭД (основные):</span>
-                            <span class="requisite-item__value">
-                                62.01 — Разработка компьютерного программного обеспечения<br>
-                                62.02 — Деятельность консультативная и работы в области компьютерных технологий<br>
-                                62.03 — Деятельность по управлению компьютерным оборудованием<br>
-                                62.09 — Деятельность, связанная с использованием вычислительной техники и информационных технологий, прочая<br>
-                                63.11 — Деятельность по обработке данных, предоставление услуг по размещению информации<br>
-                                58.29 — Издание прочих программных средств
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contacts Section -->
-        <section id="contacts" class="contacts section section--gray">
-            <div class="container">
-                <h2 class="section__title">Контакты</h2>
-                <p class="section__subtitle">Свяжитесь с нами любым удобным способом</p>
-                
-                <div class="contacts__wrapper">
-                    <div class="contacts__info">
-                        <div class="contact-item">
-                            <span class="contact-item__icon">📍</span>
-                            <div>
-                                <strong>Адрес:</strong>
-                                <p>101000, г. Москва, ул. Примерная, д. 10, офис 501</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-item__icon">📞</span>
-                            <div>
-                                <strong>Телефон:</strong>
-                                <p><a href="tel:+74950000000">+7 (495) 000-00-00</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-item__icon">✉️</span>
-                            <div>
-                                <strong>Email:</strong>
-                                <p><a href="mailto:info@impuls-it.ru">info@impuls-it.ru</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-item__icon">🕐</span>
-                            <div>
-                                <strong>Режим работы:</strong>
-                                <p>Понедельник — Пятница: 9:00 — 18:00 (МСК)</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="contacts__form">
-                        <h3>Форма обратной связи</h3>
-                        <p>Оставьте заявку, и мы свяжемся с вами в течение одного рабочего дня</p>
-                        <form class="feedback-form" id="feedbackForm" action="#" method="POST">
-                            <div class="form-group">
-                                <label for="name" class="form-label">Ваше имя <span class="required">*</span></label>
-                                <input type="text" id="name" name="name" class="form-input" required placeholder="Иван Иванов">
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" class="form-input" required placeholder="example@mail.ru">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Телефон</label>
-                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__">
-                            </div>
-                            <div class="form-group">
-                                <label for="message" class="form-label">Сообщение <span class="required">*</span></label>
-                                <textarea id="message" name="message" class="form-textarea" required placeholder="Опишите вашу задачу..."></textarea>
-                            </div>
-                            <div class="form-group form-checkbox">
-                                <input type="checkbox" id="consent" name="consent" required checked>
-                                <label for="consent">Я согласен на обработку персональных данных</label>
-                            </div>
-                            <button type="submit" class="btn btn--primary btn--full">Отправить заявку</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__top">
-                <div class="footer__company">
-                    <div class="logo">
-                        <span class="logo__text">Импульс</span>
-                        <span class="logo__tagline">IT-компания</span>
-                    </div>
-                    <p class="footer__description">
-                        Аккредитованная IT-компания. Разработка программного обеспечения и IT-консалтинг.
-                    </p>
-                </div>
-                <div class="footer__links">
-                    <div class="footer__column">
-                        <h4>Навигация</h4>
-                        <ul>
-                            <li><a href="#services">Услуги</a></li>
-                            <li><a href="#products">Продукты</a></li>
-                            <li><a href="#prices">Цены</a></li>
-                            <li><a href="#about">О компании</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer__column">
-                        <h4>Услуги</h4>
-                        <ul>
-                            <li><a href="#services">Разработка ПО</a></li>
-                            <li><a href="#services">Внедрение CRM</a></li>
-                            <li><a href="#services">Внедрение ERP</a></li>
-                            <li><a href="#services">IT-консалтинг</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer__column">
-                        <h4>Контакты</h4>
-                        <ul>
-                            <li><a href="tel:+74950000000">+7 (495) 000-00-00</a></li>
-                            <li><a href="mailto:info@impuls-it.ru">info@impuls-it.ru</a></li>
-                            <li>г. Москва, ул. Примерная, д. 10</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__bottom">
-                <div class="footer__legal">
-                    <p>© 2024 ООО «Импульс». Все права защищены.</p>
-                    <p>
-                        ИНН 7700000000 | ОГРН 1207700000000<br>
-                        Сайт носит информационный характер и не является публичной офертой.
-                    </p>
-                </div>
-                <div class="footer__accreditation">
-                    <span class="badge">Аккредитованная IT-компания</span>
-                    <p>Аккредитация Минцифры России</p>
-                </div>
-            </div>
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">О компании</h2>
+          <p class="section-sub">
+            <strong>ООО «Магистрат»</strong> — аккредитованная IT-компания. Мы сочетаем проектную работу с 1С и ежедневную эксплуатацию IT: единая точка входа для заявок по 1С, обслуживание инфраструктуры, закупка техники и сопровождение специализированного ПО (программного обеспечения), в том числе КТТ (корпоративной телефонии и связи).
+          </p>
         </div>
-    </footer>
+        <div class="cards">
+          <article class="card">
+            <h3>Опыт и методология</h3>
+            <p>Проекты ведём по согласованным регламентам: от обследования до приёмки и обучения пользователей.</p>
+          </article>
+          <article class="card">
+            <h3>Сервисная модель</h3>
+            <p>Сервис-деск по 1С, абонентское сопровождение, выездные и удалённые консультации, регламентированные реакции на инциденты.</p>
+          </article>
+          <article class="card">
+            <h3>Развитие системы</h3>
+            <p>Доработки под процессы заказчика, обновления конфигураций, интеграция с внешними системами и сервисами.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <script src="js/main.js"></script>
+    <section id="servicedesk">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Сервис-деск по 1С</h2>
+          <p class="section-sub">
+            Для пользователей и администраторов 1С действует сервис-деск: регистрация обращений, классификация по типу (инцидент, консультация, запрос на изменение), приоритеты и контроль сроков. Заявки принимаются в согласованных каналах (почта, тикет-система или иной регламент по договору).
+          </p>
+        </div>
+        <div class="prose-block">
+          <p>
+            Линия поддержки закрывает типовые вопросы по работе в конфигурациях, правам доступа, печатным формам и обменам; эскалирует задачи разработчикам и администраторам платформы 1С при необходимости. Это снижает простой учёта и даёт прозрачную историю обращений для руководства и службы безопасности.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Приём и учёт заявок</h3>
+            <p>Единый порядок регистрации, нумерация, статусы выполнения, отчётность по обращениям.</p>
+          </article>
+          <article class="card">
+            <h3>Уровни поддержки</h3>
+            <p>Первая линия — консультации и типовые сбои; вторая — доработки, администрирование кластера и глубокий анализ.</p>
+          </article>
+          <article class="card">
+            <h3>Связка с проектами</h3>
+            <p>Запросы на доработки согласуются как отдельные работы по оценке и переводятся в смету или абонентский пакет.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="infra">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Инфраструктура, почта и закупки</h2>
+          <p class="section-sub">
+            Помимо 1С мы обслуживаем серверы и рабочие места, локальную сеть и почту, участвуем в закупке и поставке оборудования, выполняем сопровождение программного обеспечения (ПО) КТТ по договору и регламентам заказчика.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Серверы и виртуализация</h3>
+            <p>Администрирование физических и виртуальных сред, резервное копирование, обновления ОС (операционной системы), мониторинг доступности.</p>
+          </article>
+          <article class="card">
+            <h3>Компьютеры и рабочие места</h3>
+            <p>Настройка ПК (персональных компьютеров) и периферии, учётные записи, типовое ПО (программное обеспечение), диагностика и ремонт в рамках договора.</p>
+          </article>
+          <article class="card">
+            <h3>Сеть</h3>
+            <p>Коммутация, Wi‑Fi (беспроводная сеть), маршрутизация, базовая информационная безопасность периметра и сегментов.</p>
+          </article>
+          <article class="card">
+            <h3>Почта</h3>
+            <p>Сопровождение почтовых серверов или облачных решений, ящики, переадресации, антиспам и политики хранения — по регламенту.</p>
+          </article>
+          <article class="card">
+            <h3>Закупка оборудования</h3>
+            <p>Подбор конфигураций под задачи, запрос коммерческих предложений, поставка и ввод в эксплуатацию.</p>
+          </article>
+          <article class="card">
+            <h3>Обслуживание ПО КТТ</h3>
+            <p>Обновления, настройка абонентских устройств и ПО (программного обеспечения) АТС (автоматической телефонной станции)/КТТ, согласование изменений с оператором связи при необходимости.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Услуги по 1С</h2>
+          <p class="section-sub">Внедрение, сопровождение и развитие программных продуктов на платформе «1С:Предприятие».</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Внедрение и запуск</h3>
+            <p>Настройка типовых и отраслевых конфигураций, миграция данных, пусконаладочные работы, обучение.</p>
+          </article>
+          <article class="card">
+            <h3>Абонентское сопровождение</h3>
+            <p>Регламентные обновления, консультации пользователей, сопровождение доработок и интеграций.</p>
+          </article>
+          <article class="card">
+            <h3>Доработки и отчёты</h3>
+            <p>Программирование на платформе 1С, внешние печатные формы, отчёты, обработки под задачи бизнеса.</p>
+          </article>
+          <article class="card">
+            <h3>Интеграции</h3>
+            <p>Обмен с сайтами, CRM (системой управления взаимоотношениями с клиентами), банками, маркетплейсами; настройка типовых и кастомных обменов.</p>
+          </article>
+          <article class="card">
+            <h3>Администрирование</h3>
+            <p>Серверы 1С, кластеры, права доступа, резервное копирование, производительность и безопасность.</p>
+          </article>
+          <article class="card">
+            <h3>Консалтинг</h3>
+            <p>Оптимизация учётных политик, методология ведения учёта в связке с возможностями 1С.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="price">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Прайс на услуги 1С</h2>
+          <p class="section-sub">
+            Ориентировочные расценки. Итоговая стоимость фиксируется в договоре или дополнительном соглашении после уточнения объёма работ.
+          </p>
+        </div>
+        <div class="price-note">
+          <strong>Важно:</strong> цены указаны без НДС (при применимости — НДС начисляется отдельно). Стоимость часа специалиста может отличаться в зависимости от срочности, сложности задачи и формата сотрудничества.
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-service">Услуга</th>
+                <th class="col-desc">Краткое описание</th>
+                <th>Цена</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-service">Час работы специалиста 1С (стандартный)</td>
+                <td class="col-desc">Программирование, настройка, консультации в рабочее время</td>
+                <td class="price-cell">от 3 500 ₽ / час</td>
+              </tr>
+              <tr>
+                <td class="col-service">Час работы специалиста (срочно / вне графика)</td>
+                <td class="col-desc">Задачи с повышенным приоритетом по согласованию</td>
+                <td class="price-cell">от 5 000 ₽ / час</td>
+              </tr>
+              <tr>
+                <td class="col-service">Абонентское сопровождение 1С</td>
+                <td class="col-desc">Пакет часов в месяц, обновления, консультации — условия по договору</td>
+                <td class="price-cell">от 25 000 ₽ / мес.</td>
+              </tr>
+              <tr>
+                <td class="col-service">Внедрение типовой конфигурации «под ключ» (базовый объём)</td>
+                <td class="col-desc">Настройка, перенос справочников, обучение — оценка после обследования</td>
+                <td class="price-cell">от 150 000 ₽</td>
+              </tr>
+              <tr>
+                <td class="col-service">Обновление типовой конфигурации 1С</td>
+                <td class="col-desc">Подготовка, тестирование, внедрение релиза с учётом доработок</td>
+                <td class="price-cell">от 15 000 ₽ / релиз</td>
+              </tr>
+              <tr>
+                <td class="col-service">Интеграция с внешней системой (типовой сценарий)</td>
+                <td class="col-desc">Обмен данными по ТЗ (техническому заданию), одна связка — стоимость по смете</td>
+                <td class="price-cell">от 40 000 ₽</td>
+              </tr>
+              <tr>
+                <td class="col-service">Разработка отчёта / обработки / печатной формы</td>
+                <td class="col-desc">По техническому заданию, оценка в часах</td>
+                <td class="price-cell">по смете</td>
+              </tr>
+              <tr>
+                <td class="col-service">Обследование и техническое задание на внедрение</td>
+                <td class="col-desc">Фиксация требований, сроков и бюджета проекта</td>
+                <td class="price-cell">от 30 000 ₽</td>
+              </tr>
+              <tr>
+                <td class="col-service">Администрирование сервера 1С (абонемент)</td>
+                <td class="col-desc">Мониторинг, резервное копирование, обновления платформы — пакет по договору</td>
+                <td class="price-cell">от 20 000 ₽ / мес.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Контакты</h2>
+          <p class="section-sub">Свяжитесь с нами для уточнения условий сотрудничества и коммерческого предложения.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-block">
+            <h3>Организация</h3>
+            <p><strong>Общество с ограниченной ответственностью «Магистрат»</strong></p>
+            <p style="margin-top:0.5rem;font-size:0.85rem;color:var(--text-muted);">Аккредитованная IT-компания</p>
+          </div>
+          <div class="contact-block">
+            <h3>Электронная почта</h3>
+            <p><a href="mailto:info@magistrat.example">info@magistrat.example</a></p>
+          </div>
+          <div class="contact-block">
+            <h3>Телефон</h3>
+            <p><a href="tel:+78001234567">+7 (800) 123-45-67</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p>© <span id="y"></span> Общество с ограниченной ответственностью «Магистрат». Все права защищены.</p>
+        <p style="margin-top: 0.5rem;">
+          ИНН: <span id="inn">[укажите ИНН]</span> | 
+          КПП: <span id="kpp">[укажите КПП]</span> | 
+          ОГРН: <span id="ogrn">[укажите ОГРН]</span>
+        </p>
+        <p style="margin-top: 0.5rem;">
+          ОКВЭД: 62.01, 62.02, 62.09, 58.29
+        </p>
+      </div>
+      <div>
+        <p>Аккредитованная IT-компания</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
